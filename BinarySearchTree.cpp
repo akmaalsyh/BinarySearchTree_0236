@@ -54,19 +54,35 @@ public:
             parent->rightchild = newNode; // Make the right child of the parent point to the new node
         }
     }
-};
 
-void search(string element, Node*& parent, Node*& currentNode)
-{
-    // This Function searches the currentNode of the specified Node as well as the current Node of its per
-    currentNode = ROOT;
-    parent = NULL;
-    while ((currentNode != NULL) && (currentNode->info != element))
+
+    void search(string element, Node*& parent, Node*& currentNode)
     {
-        parent = currentNode;
-        if (element < currentNode->info)
-            currentNode = currentNode->leftchild;
-        else
-            currentNode = currentNode->rightchild;
+        // This Function searches the currentNode of the specified Node as well as the current Node of its per
+        currentNode = ROOT;
+        parent = NULL;
+        while ((currentNode != NULL) && (currentNode->info != element))
+        {
+            parent = currentNode;
+            if (element < currentNode->info)
+                currentNode = currentNode->leftchild;
+            else
+                currentNode = currentNode->rightchild;
+        }
     }
-}
+
+    void inorder(Node* ptr)
+    {
+        if (ROOT == NULL)
+        {
+            cout << "Tree is empty" << endl;
+            return;
+        }
+        if (ptr != NULL)
+        {
+            inorder(ptr->leftchild);
+            cout << ptr->info << " ";
+            inorder(ptr->rightchild);
+        }
+    }
+};
